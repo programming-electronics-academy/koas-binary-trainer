@@ -2,8 +2,10 @@
  * 
  * An Arduino Board Game using the koas to practice your binary skills!
  * 
- * TODO:
- *  
+ ********************************** 
+ ** Functional Description 
+ **********************************   
+ *   
  *  Lorenzo decides to practice reading binary numbers - what can I say - he's a dork like that.
  *  He heard about a fun binary trainer he can build with his Arduino UNO and his Kit-on-s-Shield
  *  He goes to https://programmingelectronics.com/binaryTrainer, downloads the code for the project, 
@@ -54,25 +56,31 @@
  *  Another message is displayed asking if he would like another practice number, to press the right button for YES and the left button for No.
  *  
  *  He presses the right button, and a new number, 42, is displayed on the screen.  Lorenzo is not sure how to represent the number 42 in binary,
- *  but he enters his best guess and enters 101011  NOTE: Correct-> 101010  
+ *  but he enters his best guess and enters 00101011  NOTE: Correct-> 00101010  
  *  
  *  When asked to press the left button to submit his answer, he decides to try rentering the value, 
  *  because he thinks he flipped one of the bits wrong.  
  *  
- *  He presses the left button to 
+ *  He presses the left button to start again.  All the LEDs turn off and see's the number 42 again displayed in the serial monitor window
  *  
+ *  This time Lorenzo enters the values 00101110. NOTE: Correct-> 00101010    
+ *  Lorenzo is not positive he has the correct answer, but selects the right button to submit his answer.
  *  
+ *  Here hears his Kit-on-a-Shield beep in an annoying way, and the correct LEDs representation begins to flash 00101010
  *  
+ *  He also sees his wrong answer compared with the correct answer diaplyed on the Serial Monitor window.
  *  
+ *  He is asked if he wants another practice number, which he declines by pressing the left button.  
  *  
+ *  This takes him back to the "Main Menu", where his choices are to practice or play a high stakes game.
  *  
+ *  He decides that is enough for today and unplugs his koas.
  *  
- *  
- *  
- *  
-
- *  
- *  
+ *********************************** 
+ ** TODO
+ **********************************   
+ *   
+ *   *All the things...
  * 
  */
 
