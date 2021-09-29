@@ -66,44 +66,59 @@ void loop() {
   while (input[7] == 'x') {
 
     static byte count = 0; // Where we are in count
-    static boolean rightBTNReleased = true;
-    
-    if (rightBTNPressed() && rightBTNReleased)
+
+    /*********************/
+    /* Right Button Input*/
+    /*********************/
+    static boolean rightButtonFlag = true;
+
+    if (rightBTNPressed() && rightButtonFlag)
     {
       input[count] = '1';
       Serial.print(input[count]);
       digitalWrite(LEDPins[count], HIGH);
       count++;
-      
-      rightBTNReleased = false;
+
+      rightButtonFlag = false;
     }
 
-    if(!rightBTNPressed())
+    if (!rightBTNPressed())
     {
-      rightBTNReleased = true;
+      rightButtonFlag = true;
     }
 
-    if (leftBTNPressed())
+    /*********************/
+    /* Left Button Input*/
+    /*********************/
+    static boolean leftButtonFlag = true;
+
+    if (leftBTNPressed() && leftButtonFlag)
     {
       input[count] = '0';
       Serial.print(input[count]);
       count++;
-      delay(500);
+
+      leftButtonFlag = false;
     }
-    
+
+    if (!leftBTNPressed())
+    {
+      leftButtonFlag = true;
+    }
+
     //Blink LED that LED
     unsigned long currentMillis = millis();
-    
-    if(currentMillis - previousMillis >= interval)
+
+    if (currentMillis - previousMillis >= interval)
     {
       previousMillis = currentMillis;
 
       !LEDState ? LEDState = HIGH : LEDState = LOW;
-      digitalWrite(LEDPins[count], LEDState); 
+      digitalWrite(LEDPins[count], LEDState);
     }
-    
+
     //Reset count
-    if(count >= 8)
+    if (count >= 8)
     {
       count = 0;
     }
