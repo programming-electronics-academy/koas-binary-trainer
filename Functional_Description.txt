@@ -18,8 +18,8 @@
  *  Lorenzo selects "practice"
  *  
  *  The Serial Monitor window displays a message exmplaing that it will show a number
- *  in decimal format, for example 79.  Lorezo then must input the decimal version of that  
- *  number using the Kit-on-a-Shield buttons from least signicant bit (LSB) to most significant bit (MSB).  
+ *  in decimal format, for example 79.  Lorezo then must input the 8-bit binary version of that  
+ *  number using the Kit-on-a-Shield buttons from left to right, including leading zeroes.
  *  A left button press will be a 0 and right button press will be a 1.  
  *  
  *  The 8 LEDs on the Kit-on-a-Shield will act as a visual representation of the byte, with an on LED representing a 1,
@@ -29,22 +29,18 @@
  *  
  *  The number 175 is displayed on the Serial Monitor window.
  *  
- *  Lorezo knows that 175 in binary format is 10101111 NOTE: MSB->10101111<-LSB
- *  Starting at the LSB, Lorenzi begins to input the number.  He starts by pressing the right button, since the LSB is a 1.
+ *  Lorezo knows that 175 in binary format is 10101111 NOTE: LEFT->10101111<-RIGHT
+ *  Starting at the left, Lorenzi begins to input the number.  He starts by pressing the right button, since the left most digit is a 1.
  *  
- *  The LED in the LSB position illuminates and stays on. 
+ *  The LED on the far left position illuminates and stays on. 
  *  
- *  He then presses the right button again for the next digit.
+ *  He then presses the left button again for the next digit.
  *  
- *  The next LED lights and stays on.
- *  
- *  He repeats this 2 more times until he gets to the 5th digit, where he now presses the left button since the digit is a 0. 
- *  
- *  The 5th LED lights up momentarily, and then goes dark.
+ *  The next LED lights momentarily, and then goes dark.
  *  
  *  He continues pressing the appropriate buttons for each digit.
  *  
- *  When he gets to the last digit, he see's notices two things on the Serial Monitop window.
+ *  When he gets to the last digit on the right (the Least Signifigant Bit LSB), he see's notices two things on the Serial Monitor window.
  *  
  *  1) The binary number he entered on the Kit-on-a-Shield has been displayed on a single line
  *  2) He is asked to press the right button to submit the answer, and the left button if he would like to reenter it.
