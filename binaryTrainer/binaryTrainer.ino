@@ -1,9 +1,9 @@
 const byte RIGHT_BTN = 5; // Right Button -> press for 1 | YES
 const byte LEFT_BTN = 2; // Left Button -> press for 0 | NO
-
 const byte LEDPins[8] = { 6, 7, 8, 9, 10, 11, 12, 13 };
-
 const byte analogPinForRandomSeed = A2;
+
+char msgBuffer[100]; // Buffer for displaying messages
 
 void setup() {
 
@@ -26,6 +26,8 @@ void loop() {
 
   //Create and save random Number
   byte practiceByte = random(0, 256);
-  Serial.println(practiceByte);
+
+  sprintf(msgBuffer, "Enter --> %d <-- in binary", practiceByte);
+  Serial.println(msgBuffer);
   
 }
