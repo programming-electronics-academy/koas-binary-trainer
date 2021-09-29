@@ -7,7 +7,7 @@ char msgBuffer[100]; // Buffer for displaying messages
 
 //Timing of selection blink
 boolean LEDState = LOW;
-unsigned long previousMillis = 0;        // will store last time LED was updated
+unsigned long previousMillis = 0; // will store last time LED was updated
 const long interval = 500;           // interval at which to blink (milliseconds)
 
 void setup() {
@@ -57,19 +57,23 @@ void loop() {
   //Create and save random Number
   byte practiceByte = random(0, 256);
 
-  sprintf(msgBuffer, "Enter --> %d <-- in binary", practiceByte);
+  sprintf(msgBuffer, "\nEnter --> %d <-- in binary", practiceByte);
   Serial.println(msgBuffer);
 
   /* I don't like this...I am using it as a test to see when input is complete */
   char input[8] = { 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x'} ; // Array to hold user input
 
+
+  /******************************
+     INPUT MODE
+   * ***************************/
   while (input[7] == 'x') {
 
     static byte count = 0; // Where we are in count
 
-    /*********************/
-    /* Right Button Input*/
-    /*********************/
+    /**********************/
+    /* Right Button Input */
+    /**********************/
     static boolean rightButtonFlag = true;
 
     if (rightBTNPressed() && rightButtonFlag)
@@ -82,13 +86,14 @@ void loop() {
       rightButtonFlag = false;
     }
 
+    // Check if button has been released
     if (!rightBTNPressed())
     {
       rightButtonFlag = true;
     }
 
     /*********************/
-    /* Left Button Input*/
+    /* Left Button Input */
     /*********************/
     static boolean leftButtonFlag = true;
 
@@ -96,17 +101,21 @@ void loop() {
     {
       input[count] = '0';
       Serial.print(input[count]);
+      digitalWrite(LEDPins[count], LOW);
       count++;
 
       leftButtonFlag = false;
     }
 
+    // Check if button has been released
     if (!leftBTNPressed())
     {
       leftButtonFlag = true;
     }
 
-    //Blink LED that LED
+    /****************************
+       Blink current input LED
+     ***************************/
     unsigned long currentMillis = millis();
 
     if (currentMillis - previousMillis >= interval)
