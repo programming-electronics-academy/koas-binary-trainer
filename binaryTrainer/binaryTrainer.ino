@@ -6,7 +6,7 @@ const byte analogPinForRandomSeed = A2;
 char msgBuffer[100]; // Buffer for displaying messages
 
 //Timing of selection blink
-boolean LEDState = HIGH;
+boolean LEDState = LOW;
 unsigned long previousMillis = 0;        // will store last time LED was updated
 const long interval = 500;           // interval at which to blink (milliseconds)
 
@@ -66,25 +66,21 @@ void loop() {
   while (input[7] == 'x') {
 
     static byte count = 0; // Where we are in count
+    static boolean rightBTNReleased = true;
     
-    //Blink LED that LED
-    unsigned long currentMillis = millis();
-    
-    if(currentMillis - previousMillis >= interval)
-    {
-      previousMillis = currentMillis;
-
-      LEDState ? LEDState = LOW : LEDState = HIGH;
-      digitalWrite(LEDPins[count], LEDState); 
-    }
-    
-    if (rightBTNPressed())
+    if (rightBTNPressed() && rightBTNReleased)
     {
       input[count] = '1';
       Serial.print(input[count]);
       digitalWrite(LEDPins[count], HIGH);
       count++;
-      delay(500);
+      
+      rightBTNReleased = false;
+    }
+
+    if(!rightBTNPressed())
+    {
+      rightBTNReleased = true;
     }
 
     if (leftBTNPressed())
@@ -94,12 +90,22 @@ void loop() {
       count++;
       delay(500);
     }
+    
+    //Blink LED that LED
+    unsigned long currentMillis = millis();
+    
+    if(currentMillis - previousMillis >= interval)
+    {
+      previousMillis = currentMillis;
 
+      !LEDState ? LEDState = HIGH : LEDState = LOW;
+      digitalWrite(LEDPins[count], LEDState); 
+    }
+    
     //Reset count
     if(count >= 8)
     {
       count = 0;
     }
   }
-
 }
