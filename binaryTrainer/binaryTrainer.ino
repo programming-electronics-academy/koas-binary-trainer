@@ -1,20 +1,12 @@
-/*
- * ****************
- * * TODO
- * ****************
- * 
- * 
- * 
- * 
- * 
- */
+const byte RIGHT_BTN = 5; // Right Button -> press for 1 | YES
+const byte LEFT_BTN = 2; // Left Button -> press for 0 | NO
 
 void setup() {
-  // put your setup code here, to run once:
+
+  Serial.begin(9600);
 
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
 
 }
