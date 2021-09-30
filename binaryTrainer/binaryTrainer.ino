@@ -1,7 +1,9 @@
 const byte RIGHT_BTN = 5; // Right Button -> press for 1 | YES  - Normally LOW, HIGH when Pressed
 const byte LEFT_BTN = 2; // Left Button -> press for 0 | NO   - Normally HIGH, LOW when Pressed
-const byte LEDPins[8] = { 13, 12, 11, 10, 9, 8, 7, 6 }; // Pins for LEDs positioned from Left (MSB) to Right (LSB)
+const byte numLEDs = 8;
+const byte LEDPins[numLEDs] = { 13, 12, 11, 10, 9, 8, 7, 6 }; // Pins for LEDs positioned from Left (MSB) to Right (LSB)
 const byte analogPinForRandomSeed = A2;
+
 
 char msgBuffer[100]; // Buffer for displaying messages
 
@@ -61,14 +63,12 @@ void loop() {
   Serial.println(msgBuffer);
 
   /* I don't like this...I am using it as a test to see when input is complete */
-  char input[8] = { 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x'} ; // Array to hold user input
+  byte input[numLEDs] = { 2, 2, 2, 2, 2, 2, 2, 2 } ; // Array to hold user input
 
-
-  /******************************
-     INPUT MODE
-   * ***************************/
-  while (input[7] == 'x') {
-
+  /************************************************************
+        INPUT MODE
+  ***********************************************************/
+  while (input[numLEDs - 1] == 2) {
     static byte count = 0; // Where we are in count
 
     /**********************/
@@ -78,7 +78,7 @@ void loop() {
 
     if (rightBTNPressed() && rightButtonFlag)
     {
-      input[count] = '1';
+      input[count] = 1;
       Serial.print(input[count]);
       digitalWrite(LEDPins[count], HIGH);
       count++;
@@ -99,7 +99,7 @@ void loop() {
 
     if (leftBTNPressed() && leftButtonFlag)
     {
-      input[count] = '0';
+      input[count] = 0;
       Serial.print(input[count]);
       digitalWrite(LEDPins[count], LOW);
       count++;
@@ -132,4 +132,13 @@ void loop() {
       count = 0;
     }
   }
+
+  /************************************************************
+       Check Result
+  ***********************************************************/
+
+  
+  
+
+
 }
