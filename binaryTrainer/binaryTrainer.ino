@@ -54,13 +54,29 @@ boolean leftBTNPressed()
   return digitalRead(LEFT_BTN) ? false : true;
 }
 
+/*
+ * Converts an array representing the digits  
+ * of a binary number to an integer.
+ */
+int convertBinaryArrayToInt(byte binArray[], byte arrayLength)
+{
+  int result = 0;
+
+  for (int i = arrayLength - 1, multiplier = 1; i >= 0; i--, multiplier *= 2)
+  {
+    result += multiplier * binArray[i];
+  }
+
+  return result;
+}
+
 void loop() {
 
   //Create and save random Number
   byte practiceByte = random(0, 256);
 
-  sprintf(msgBuffer, "\nEnter --> %d <-- in binary", practiceByte);
-  Serial.println(msgBuffer);
+  sprintf(msgBuffer, "\nEnter --> %d <-- in binary\n\nYour Answer--> ", practiceByte);
+  Serial.print(msgBuffer);
 
   /* I don't like this...I am using it as a test to see when input is complete */
   byte input[numLEDs] = { 2, 2, 2, 2, 2, 2, 2, 2 } ; // Array to hold user input
@@ -137,8 +153,25 @@ void loop() {
        Check Result
   ***********************************************************/
 
+  Serial.print("\nIs this your final answer?  No (left button), Yes (right button)"); 
+  
+  boolean submit = false;
+
+  while(!submit)
+  {
+    if(leftBTNPressed() || rightBTNPressed()){
+      submit = !submit;
+    }
+    delay(100);
+  }
+
   
   
+  int inputValue;
+  
+
+
+
 
 
 }
