@@ -55,9 +55,9 @@ boolean leftBTNPressed()
 }
 
 /*
- * Converts an array representing the digits  
- * of a binary number to an integer.
- */
+   Converts an array representing the digits
+   of a binary number to an integer.
+*/
 int convertBinaryArrayToInt(byte binArray[], byte arrayLength)
 {
   int result = 0;
@@ -146,6 +146,8 @@ void loop() {
     if (count >= 8)
     {
       count = 0;
+
+      delay(100); //Prevents last button press from registering further
     }
   }
 
@@ -153,22 +155,20 @@ void loop() {
        Check Result
   ***********************************************************/
 
-  Serial.print("\nIs this your final answer?  No (left button), Yes (right button)"); 
-  
-  boolean submit = false;
+  Serial.print("\nIs this your final answer?  No (left button), Yes (right button)");
 
-  while(!submit)
+  boolean submit = false;
+  int inputValue;
+
+  while (submit != true)
   {
-    if(leftBTNPressed() || rightBTNPressed()){
-      submit = !submit;
+    if(leftBTNPressed())
+    {
+      submit = true; 
+      delay(1000); // Prevents last button press from registering further   
     }
-    delay(100);
   }
 
-  
-  
-  int inputValue;
-  
 
 
 
